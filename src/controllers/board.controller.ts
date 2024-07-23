@@ -58,7 +58,7 @@ class BoardController{
 
             await newBoard.save();
 
-            res.status(201).json(newBoard);
+            return res.status(201).json({mes: "Board has been sucsessfully created!", data: newBoard});
         }catch(e){
             return res.sendStatus(400)
         }
@@ -102,7 +102,7 @@ class BoardController{
                 return res.sendStatus(404);
             }
 
-            return res.status(200).json(updatedBoard);
+            return res.status(200).json({mes: "Board has been sucsessfully updated!", data: updatedBoard});
         } catch (e) {
             return res.sendStatus(400);
         }

@@ -33,7 +33,7 @@ class EmployeeController{
                 doj
             })
             await employee.save()
-            return res.status(201).json({mes: "Employee is sucsesfully created!", data: employee})
+            return res.status(201).json({mes: "Employee has been sucsessfully created!", data: employee})
         }catch (e){
             return res.sendStatus(400)
         }
@@ -53,7 +53,7 @@ class EmployeeController{
                 employee.dob = dob
 
                 await employee.save()
-                return res.status(200).json({mes: "Employee is sucsesfully updated!", data: employee}) 
+                return res.status(200).json({mes: "Employee has been sucsessfully updated!", data: employee}) 
             }
             return res.sendStatus(400)
         }catch (e){

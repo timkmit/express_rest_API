@@ -17,5 +17,5 @@ mongoose.connect(MONGO_URL, {
 app.use('/', router)
 
 app.listen(3000, () => {
-    console.log("Server sucsesfully started on 3000 port")
+    console.log("Server sucsessfully started on 3000 port")
 })

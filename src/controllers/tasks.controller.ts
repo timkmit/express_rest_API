@@ -59,7 +59,7 @@ class TaskController {
             column.tasks.push(newTask._id);
             await board.save();
 
-            return res.status(201).json(newTask);
+            return res.status(201).json({mes: "Task has been sucsessfully created!", data: newTask});
         } catch (e) {
             return res.sendStatus(400);
         }
@@ -80,7 +80,7 @@ class TaskController {
                 return res.sendStatus(404);
             }
 
-            return res.status(200).json(updatedTask);
+            return res.status(200).json({mes: "Task has been sucsessfully updated!", data: updatedTask});
         } catch (e) {
             return res.sendStatus(400);
         }
