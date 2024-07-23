@@ -10,15 +10,10 @@ const BoardSchema = new mongoose.Schema({
         required: true
     },
     columns: [{
-        name: {
-            type: String,
-            required: true
-        },
-        tasks: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Task'
-        }]
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Column'
     }]
 });
 
-export const BoardModel = mongoose.model('Board', BoardSchema)
+const BoardModel = mongoose.model('Board', BoardSchema);
+export { BoardModel, BoardSchema };

@@ -5,7 +5,7 @@ import router from "./routes"
 const app = express()
 app.use(express.json())
 
-const MONGO_URL = 'YOUR DB URL'
+const MONGO_URL = 'mongodb+srv://timkmitdb:65876587@atlascluster.bxtjbj0.mongodb.net/'
 mongoose.connect(MONGO_URL, {
     dbName: 'kanbanApp'
 })

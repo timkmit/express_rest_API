@@ -65,7 +65,7 @@ class EmployeeController{
         try{
             const { id } = req.params
             await EmployeeModel.findByIdAndDelete({_id: id})
-            return res.status(200).json({mes: "Employee is sucsesfully deleted!"})
+            return res.status(200).json({mes: "Employee has been sucsesfully deleted!"})
         }catch (e){
             return res.sendStatus(400)
         }
