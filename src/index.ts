@@ -21,7 +21,26 @@ mongoose.connect(MONGO_URL, {
 
 app.use('/', router)
 router.get('/', (req, res) => {
-    res.send('Воспользуйтесь действующими роутами');
+    const routes = [
+        'GET /employees',
+        'GET /employees/:id',
+        'POST /employees',
+        'PUT /employees/:id',
+        'DELETE /employees/:id',
+        'GET /boards',
+        'GET /boards/:id',
+        'POST /boards',
+        'PUT /boards/:id',
+        'DELETE /boards/:id',
+        'POST /tasks',
+        'PUT /tasks/:id',
+        'DELETE /tasks/:id',
+        'POST /columns',
+        'PUT /columns/:id',
+        'DELETE /columns/:id'
+    ];
+
+    res.send('<pre>Доступные маршруты:\n' + routes.join('\n') + '</pre>');
 });
 app.listen(3000, () => {
     console.log("Server sucsessfully started on 3000 port")
