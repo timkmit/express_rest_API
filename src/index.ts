@@ -37,7 +37,9 @@ router.get('/', (req, res) => {
         'DELETE /tasks/:id',
         'POST /columns',
         'PUT /columns/:id',
-        'DELETE /columns/:id'
+        'DELETE /columns/:id',
+        'Создайте доску, потом колонки, затем добавьте таски',
+        'Source code: https://github.com/timkmit/express_rest_API.git'
     ];
 
     res.send('<pre>Доступные маршруты:\n' + routes.join('\n') + '</pre>');
