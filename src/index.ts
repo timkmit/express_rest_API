@@ -15,6 +15,9 @@ mongoose.connect(MONGO_URL, {
     .catch((error) => console.log(error))
 
 app.use('/', router)
+router.get('/', (req, res) => {
+    res.send('Воспользуйтесь действующими роутами');
+});
 
 app.listen(3000, () => {
     console.log("Server sucsessfully started on 3000 port")
