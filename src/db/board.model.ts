@@ -1,4 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
+
+interface IBoard extends Document {
+    title: string;
+    description: string;
+    columns: mongoose.Types.ObjectId[];
+}
 
 const BoardSchema = new mongoose.Schema({
     title: {
@@ -17,3 +23,4 @@ const BoardSchema = new mongoose.Schema({
 
 const BoardModel = mongoose.model('Board', BoardSchema);
 export { BoardModel, BoardSchema };
+export { IBoard };

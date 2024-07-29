@@ -1,4 +1,9 @@
-import mongoose from "mongoose"
+import mongoose, { Document } from "mongoose"
+
+interface IColumn extends Document {
+    name: string;
+    tasks: mongoose.Types.ObjectId[];
+}
 
 const ColumnSchema = new mongoose.Schema({
     name: {
@@ -13,3 +18,4 @@ const ColumnSchema = new mongoose.Schema({
 
 const ColumnModel = mongoose.model('Column', ColumnSchema);
 export { ColumnModel, ColumnSchema };
+export { IColumn };
