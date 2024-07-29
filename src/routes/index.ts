@@ -18,7 +18,7 @@ router.delete('/employees/:id', employeeController.deleteEmployee)
 
 /**
  * @openapi
- * /boards:
+ * /boards/get:
  *   get:
  *     tags:
  *       - Boards
@@ -89,11 +89,11 @@ router.delete('/employees/:id', employeeController.deleteEmployee)
  *         description: Internal server error
  */
 
-router.get('/boards', boardController.getAllBoards)
+router.get('/boards/get', boardController.getAllBoards)
 
 /**
  * @openapi
- * /boards/{id}:
+ * /boards/{id}/get:
  *   get:
  *     tags:
  *       - Boards
@@ -174,12 +174,12 @@ router.get('/boards', boardController.getAllBoards)
  *         description: Internal server error
  */
 
-router.get('/boards/:id', boardController.getBoard)
-router.post('/boards', boardController.createBoard)
+router.get('/boards/:id/get', boardController.getBoard)
+// router.post('/boards/create', boardController.createBoard)
 
 /**
  * @openapi
- * /boardswcol:
+ * /boards/create:
  *   post:
  *     tags:
  *       - Boards
@@ -261,11 +261,11 @@ router.post('/boards', boardController.createBoard)
  *         description: Bad request
  */
 
-router.post('/boardswcol', boardController.createBoardWithCol)
+router.post('/boards/create', boardController.createBoardWithCol)
 
 /**
  * @openapi
- * /boards/{id}:
+ * /boards/{id}/update:
  *   put:
  *     tags:
  *       - Boards
@@ -372,11 +372,11 @@ router.post('/boardswcol', boardController.createBoardWithCol)
  *         description: Bad request
  */
 
-router.put('/boards/:id', boardController.updateBoard)
+router.put('/boards/:id/update', boardController.updateBoard)
 
 /**
  * @openapi
- * /boards/{id}:
+ * /boards/{id}/delete:
  *   delete:
  *     tags:
  *       - Boards
@@ -397,7 +397,7 @@ router.put('/boards/:id', boardController.updateBoard)
  *       400:
  *         description: Bad request
  */
-router.delete('/boards/:id', boardController.deleteBoard)
+router.delete('/boards/:id/delete', boardController.deleteBoard)
 
 router.post('/tasks', tasksController.createTask)
 router.put('/tasks/:id', tasksController.updateTask)
