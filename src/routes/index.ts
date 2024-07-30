@@ -399,9 +399,84 @@ router.put('/boards/:id/update', boardController.updateBoard)
  */
 router.delete('/boards/:id/delete', boardController.deleteBoard)
 
-router.post('/tasks', tasksController.createTask)
-router.put('/tasks/:id', tasksController.updateTask)
-router.delete('/tasks/:id', tasksController.deleteTask)
+
+/**
+ * @openapi
+ * /tasks/create:
+ *   post:
+ *     tags:
+ *       - Tasks
+ *     summary: Create a new task
+ *     description: Creates a new task and assigns it to a column.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               columnId:
+ *                 type: string
+ *                 description: ID of the column to which the task belongs
+ *                 example: "66a7650a28a3b59db35bdc6c"
+ *               title:
+ *                 type: string
+ *                 description: Title of the task
+ *                 example: "Task 1"
+ *               description:
+ *                 type: string
+ *                 description: Description of the task
+ *                 example: "Description for task 1"
+ *               subtasks:
+ *                 type: array
+ *                 description: List of subtasks
+ *                 items:
+ *                   type: string
+ *                   example: "Subtask 1.1"
+ *               status:
+ *                 type: string
+ *                 description: Status of the task
+ *                 example: "Not Started"
+ *             required:
+ *               - columnId
+ *               - title
+ *               - description
+ *               - status
+ *     responses:
+ *       201:
+ *         description: Task created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 title:
+ *                   type: string
+ *                   example: "Task 1"
+ *                 description:
+ *                   type: string
+ *                   example: "Description for task 1"
+ *                 subtasks:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                     example: "Subtask 1.1"
+ *                 status:
+ *                   type: string
+ *                   example: "Not Started"
+ *                 _id:
+ *                   type: string
+ *                   example: "66a7703649329bdedd221387"
+ *                 __v:
+ *                   type: number
+ *                   example: 0
+ *       400:
+ *         description: Bad request
+ */
+
+router.post('/tasks/create', tasksController.createTask)
+router.put('/tasks/:id/update', tasksController.updateTask)
+router.delete('/tasks/:id/delete', tasksController.deleteTask)
 
 router.post('/columns', columnController.createColumn);
 router.put('/columns/:id', columnController.updateColumn);
