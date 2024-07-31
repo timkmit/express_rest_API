@@ -475,7 +475,106 @@ router.delete('/boards/:id/delete', boardController.deleteBoard)
  */
 
 router.post('/tasks/create', tasksController.createTask)
+
+/**
+ * @openapi
+ * /tasks/{id}/update:
+ *   put:
+ *     tags:
+ *       - Tasks
+ *     summary: Update a task
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID of the task to update
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               columnId:
+ *                 type: string
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               subtasks:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               status:
+ *                 type: string
+ *             example:
+ *               columnId: "66a7650a28a3b59db35bdc6c"
+ *               title: "Task 1"
+ *               description: "Description for task 1"
+ *               subtasks: ["Subtask 1.1", "Subtask 1.2"]
+ *               status: "Not Started"
+ *     responses:
+ *       200:
+ *         description: Task updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 title:
+ *                   type: string
+ *                 description:
+ *                   type: string
+ *                 subtasks:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                 status:
+ *                   type: string
+ *                 _id:
+ *                   type: string
+ *                 __v:
+ *                   type: integer
+ *             example:
+ *               title: "Task 1"
+ *               description: "Description for task 1"
+ *               subtasks: ["Subtask 1.1", "Subtask 1.2"]
+ *               status: "Not Started"
+ *               _id: "66a7703649329bdedd221387"
+ *               __v: 0
+ *       404:
+ *         description: Task not found
+ *       400:
+ *         description: Bad request
+ */
+
 router.put('/tasks/:id/update', tasksController.updateTask)
+
+/**
+ * @openapi
+ * /tasks/{id}/delete:
+ *   delete:
+ *     tags:
+ *       - Tasks
+ *     summary: Delete a task
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         description: ID of the task to delete
+ *         schema:
+ *           type: string
+ *     responses:
+ *       204:
+ *         description: Task deleted successfully
+ *       404:
+ *         description: Task not found
+ *       400:
+ *         description: Bad request
+ */
+
 router.delete('/tasks/:id/delete', tasksController.deleteTask)
 
 router.post('/columns', columnController.createColumn);
