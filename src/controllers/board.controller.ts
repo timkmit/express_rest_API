@@ -49,6 +49,7 @@ class BoardController {
             const { id } = req.params;
             const updateData = req.body;
             const updatedBoard = await boardService.updateBoard(id, updateData);
+            console.log(updateData)
 
             if (!updatedBoard) return res.sendStatus(404);
             return res.status(200).json(updatedBoard);
