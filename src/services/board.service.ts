@@ -67,8 +67,9 @@ class BoardService {
         session.startTransaction();
     
         try {
-            const { columns, boardData } = updateData;
+            const { boardData, columns } = updateData;
     
+            // Находим и обновляем доску
             const updatedBoard = await BoardModel.findById(id).session(session);
     
             if (!updatedBoard) {
@@ -77,20 +78,38 @@ class BoardService {
                 return null;
             }
     
+            // Обновляем поля доски
             updatedBoard.title = boardData.title || updatedBoard.title;
             updatedBoard.description = boardData.description || updatedBoard.description;
     
-            if (columns) {
-                for (const columnData of columns) {
+            // Список идентификаторов существующих колонок для удаления
+            const existingColumnIds = updatedBoard.columns.map(col => col.toString());
+    
+            // Обработка колонок
+            const newColumnIds: mongoose.Types.ObjectId[] = [];
+    
+            for (const columnData of columns) {
+                if (columnData._id) {
+                    // Обновление существующей колонки
                     const column = await ColumnModel.findById(columnData._id).session(session);
     
                     if (column) {
                         column.name = columnData.name || column.name;
                         await column.save({ session });
+                        newColumnIds.push(column._id);
                     }
+                } else {
+                    // Создание новой колонки
+                    const newColumn = new ColumnModel({ name: columnData.name });
+                    await newColumn.save({ session });
+                    newColumnIds.push(newColumn._id);
                 }
             }
-
+    
+            // Обновляем список колонок доски
+            updatedBoard.columns = newColumnIds;
+    
+            // Сохраняем изменения доски
             await updatedBoard.save({ session });
     
             await session.commitTransaction();

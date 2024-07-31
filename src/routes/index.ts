@@ -299,6 +299,9 @@ router.post('/boards/create', boardController.createBoardWithCol)
  *                 items:
  *                   type: object
  *                   properties:
+ *                     _id:
+ *                       type: string
+ *                       example: "66aa2ef20eb128a3c66fa15a"
  *                     name:
  *                       type: string
  *                       example: "Backlog"
@@ -307,9 +310,11 @@ router.post('/boards/create', boardController.createBoardWithCol)
  *                 title: "Project Management Board"
  *                 description: "A board to manage project tasks and milestones."
  *               columns:
- *                 - name: "Backlog"
- *                 - name: "In Progress"
- *                 - name: "Completed"
+ *                 - _id: "66aa2ef20eb128a3c66fa15a"
+ *                   name: "Updated Backlog"
+ *                 - _id: "66aa2ef20eb128a3c66fa15c"
+ *                   name: "Updated In Progress"
+ *                 - name: "New Column"
  *     responses:
  *       200:
  *         description: Board updated successfully
@@ -334,14 +339,31 @@ router.post('/boards/create', boardController.createBoardWithCol)
  *                     properties:
  *                       _id:
  *                         type: string
- *                         example: "66a7469e200d4afc8fdb80a7"
+ *                         example: "66aa2ef20eb128a3c66fa15a"
  *                       name:
  *                         type: string
- *                         example: "Backlog"
+ *                         example: "Updated Backlog"
  *                       tasks:
  *                         type: array
  *                         items:
- *                           type: string
+ *                           type: object
+ *                           properties:
+ *                             _id:
+ *                               type: string
+ *                               example: "66aa2f0a0eb128a3c66fa165"
+ *                             title:
+ *                               type: string
+ *                               example: "Task test"
+ *                             description:
+ *                               type: string
+ *                               example: "Description for task 1"
+ *                             subtasks:
+ *                               type: array
+ *                               items:
+ *                                 type: string
+ *                             status:
+ *                               type: string
+ *                               example: "Not Started"
  *                       __v:
  *                         type: integer
  *                         example: 0
@@ -353,16 +375,23 @@ router.post('/boards/create', boardController.createBoardWithCol)
  *               title: "Project Management Board"
  *               description: "A board to manage project tasks and milestones."
  *               columns:
- *                 - _id: "66a7469e200d4afc8fdb80a7"
- *                   name: "Backlog"
+ *                 - _id: "66aa2ef20eb128a3c66fa15a"
+ *                   name: "Updated Backlog"
+ *                   tasks:
+ *                     - _id: "66aa2f0a0eb128a3c66fa165"
+ *                       title: "Task test"
+ *                       description: "Description for task 1"
+ *                       subtasks:
+ *                         - "Subtask 1.1"
+ *                         - "Subtask 1.2"
+ *                       status: "Not Started"
+ *                   __v: 0
+ *                 - _id: "66aa2ef20eb128a3c66fa15c"
+ *                   name: "Updated In Progress"
  *                   tasks: []
  *                   __v: 0
- *                 - _id: "66a7469e200d4afc8fdb80a9"
- *                   name: "In Progress"
- *                   tasks: []
- *                   __v: 0
- *                 - _id: "66a7469e200d4afc8fdb80ab"
- *                   name: "Completed"
+ *                 - _id: "66aa2ef20eb128a3c66fa15e"
+ *                   name: "New Column"
  *                   tasks: []
  *                   __v: 0
  *               __v: 1
