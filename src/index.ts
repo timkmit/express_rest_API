@@ -1,10 +1,12 @@
 import express from "express"
 import mongoose from "mongoose"
+import cors from 'cors';
 import router from "./routes"
 import swaggerSetup from "./swagger/swagger"
 
 const app = express()
 app.use(express.json())
+app.use(cors());
 
 require('dotenv').config();
 
